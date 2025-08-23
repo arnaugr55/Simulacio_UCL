@@ -29,9 +29,6 @@ if iters == 1:
     except Exception as e:
         raise ValueError(f"Has d'introduir el valor S o N. En majúscules")
 
-iters = 1
-pas_a_pas = True
-tot_proces = False
 
 # Inicialitzem resultats. On posem els resultats de cada equip en cada iteració
 resultats = pd.read_csv('equips/UCLTeams_202526.csv')
@@ -73,7 +70,8 @@ def champions(tot_proces, equips):
 
     else:
         # Aleatòriament, seleccionem una fase lliga de les ja generades
-        carpeta = r"C:\Users\usuari\Documents\SimulacióFut\equips\fase_lliga\202526"
+        #carpeta = r"C:\Users\usuari\Documents\SimulacióFut\equips\fase_lliga\202526"
+        carpeta = r"equips\fase_lliga\202526"
         fitxers = [f for f in os.listdir(carpeta) if
                    f.startswith("jornades_") and os.path.isfile(os.path.join(carpeta, f))]
         # Selecciona un fitxer aleatori

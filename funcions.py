@@ -7,7 +7,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageTk
 import tkinter as tk
 import time
 import subprocess
-import sys
+
+import webbrowser
 
 from flask import Flask, render_template_string, request
 import threading
@@ -762,13 +763,12 @@ def html_results_fase_lliga(resultats_jornada, jornada, clica_aqui):
     with open("outputs//resultats_jornada.html", "w", encoding="utf-8") as f:
         f.write(html_complet)
 
-    # Fem que es mostri el html al Chrome, a la ruta "http://127.0.0.1:5000"
+    # Fem que es mostri el html al navegador, a la ruta "http://127.0.0.1:5000"
     evento.clear()
     threading.Thread(target=lambda: app.run(debug=False, use_reloader=False)).start()
     time.sleep(1)  # Espera que Flask arrenqui
-    chrome_path = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
     local_path = "http://127.0.0.1:5000"
-    subprocess.Popen([chrome_path, local_path])
+    webbrowser.open(local_path)
 
     espera_click()  # 🔴 Aquí es para el codi fins que es fa clic
     return
@@ -903,13 +903,13 @@ def html_table_fase_lliga(league_table_, league_table_anterior, jornada):
     with open("outputs\classificacio.html", "w", encoding="utf-8") as f:
         f.write(html_complet)
 
-    # Fem que es mostri el html al Chrome, a la ruta "http://127.0.0.1:5000"
+    # Fem que es mostri el html al navegador, a la ruta "http://127.0.0.1:5000"
     evento.clear()
     threading.Thread(target=lambda: app.run(debug=False, use_reloader=False)).start()
     time.sleep(1)  # Espera que Flask arrenqui
-    chrome_path = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
     local_path = "http://127.0.0.1:5000"
-    subprocess.Popen([chrome_path, local_path])
+    webbrowser.open(local_path)
+
     espera_click()  # 🔴 Aquí es para el codi fins que es fa clic
 
     print("Ara pots generar la següent jornada.")
