@@ -1,0 +1,165 @@
+
+    <!DOCTYPE html>
+    <html lang="ca">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resultats Play-offs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .boton {
+        display: block;
+        margin: 0 auto 30px auto;
+        padding: 10px 20px;
+        background-color: #051080;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        text-align: center;
+    }
+
+    .teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .team-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      padding: 5px;
+      border-radius: 20%;
+      border: 5px solid transparent;
+    }
+
+    .win {
+      border-color: green;
+      background-color: #d4edda;
+    }
+
+    .loss {
+      border-color: red;
+      background-color: #f8d7da;
+    }
+
+    .draw {
+      border-color: orange;
+      background-color: #fff3cd;
+    }
+
+    .score {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .team-names {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+        <form method="POST">
+            <button class="boton" type="submit">Clica aquí per veure el bracket</button>
+        </form>
+        <h1>Resultats Play-offs</h1>
+        <div class="grid">
+            <div class="card">
+          <div class="teams">
+            <img src="static/escuts/Celtic.png" alt="Celtic" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/Bayern.png" alt="Bayern" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Celtic vs Bayern</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Brest.png" alt="Brest" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/PSG.png" alt="PSG" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Brest vs PSG</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Atalanta.png" alt="Atalanta" class="team-logo win">
+            <div class="score">W - L</div>
+            <img src="static/escuts/Olympiacos.png" alt="Olympiacos" class="team-logo loss">
+          </div>
+          <div class="team-names"><strong>Atalanta vs Olympiacos</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Ajax.png" alt="Ajax" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/Real Madrid.png" alt="Real Madrid" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Ajax vs Real Madrid</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Atlético.png" alt="Atlético" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/Tottenham.png" alt="Tottenham" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Atlético vs Tottenham</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Slavia Prague.png" alt="Slavia Prague" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/Benfica.png" alt="Benfica" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Slavia Prague vs Benfica</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Monaco.png" alt="Monaco" class="team-logo loss">
+            <div class="score">L - W</div>
+            <img src="static/escuts/Marseille.png" alt="Marseille" class="team-logo win">
+          </div>
+          <div class="team-names"><strong>Monaco vs Marseille</strong></div>
+        </div><div class="card">
+          <div class="teams">
+            <img src="static/escuts/Villarreal.png" alt="Villarreal" class="team-logo win">
+            <div class="score">W - L</div>
+            <img src="static/escuts/Athletic.png" alt="Athletic" class="team-logo loss">
+          </div>
+          <div class="team-names"><strong>Villarreal vs Athletic</strong></div>
+        </div>
+        </div>
+
+    </body>
+    </html>
+    

@@ -1,0 +1,37 @@
+POS - CLUB - PTS
+1 - Liverpool - 21
+2 - Inter - 19
+3 - Barça - 19
+4 - Newcastle - 18
+5 - Arsenal - 16
+6 - Leverkusen - 16
+7 - Manchester City - 16
+8 - Napoli - 16
+9 - Bayern - 16
+10 - PSG - 14
+11 - Olympiacos - 13
+12 - Real Madrid - 13
+13 - Tottenham - 13
+14 - Benfica - 13
+15 - Marseille - 12
+16 - Athletic - 12
+17 - Monaco - 11
+18 - Villarreal - 11
+19 - Slavia Prague - 10
+20 - Atlético - 10
+21 - Ajax - 10
+22 - Atalanta - 9
+23 - Celtic - 9
+24 - Brest - 9
+25 - PSV - 9
+26 - BVB - 9
+27 - Sporting CP - 8
+28 - Chelsea - 8
+29 - Young Boys - 7
+30 - Eintracht - 7
+31 - Galatasaray - 6
+32 - Juventus - 6
+33 - Union Saint-Gilloise - 6
+34 - Slovan Bratislava - 5
+35 - Sturm Graz - 4
+36 - Estrella Roja - 4
