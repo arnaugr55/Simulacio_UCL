@@ -6,7 +6,6 @@ import pandas as pd
 import os
 
 
-'''
 try:
     iters = int(input("Quantes iteracions vols fer de la Champions?\n--> Si esculls 1 podràs "
                       "veure com va la Champions ronda a ronda. \n--> Si esculls un número major, no, "
@@ -29,7 +28,6 @@ if iters == 1:
         tot_proces = conv_respostes[tot_proces_]
     except Exception as e:
         raise ValueError(f"Has d'introduir el valor S o N. En majúscules")
-'''
 
 iters = 1
 pas_a_pas = True
