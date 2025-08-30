@@ -35,9 +35,9 @@ def sorteig_fase_lliga(equips, countr_teams_faced, partits):
 
             # Iterem fins que aquell equip ja tingui 8 rivals
             while sum(partits[ind]) != 8:
-                # Generem una llista aleatòria dels 36 possibles equips rivals
                 random_36teams = random.sample(range(0, 9), 9) + random.sample(range(9, 18), 9) + random.sample(
                     range(18, 27), 9) + random.sample(range(27, 36), 9)
+
                 cont = 0  # Contador de quants possibles rivals portem iterats
                 # Iterem els diferents possibles rivals de la llista random_36teams
                 while sum(partits[ind]) != 8:
@@ -46,11 +46,14 @@ def sorteig_fase_lliga(equips, countr_teams_faced, partits):
                     equip2 = equips.iloc[random_team_num]  # equip2 és el possible rival
                     equip2_league = equip2['League']
 
-                    # Revisem el número de rivals ja seleccionats que té en aquell pot, tant el equip com el equip2
+                    # Contem el número de rivals ja seleccionats de l'equip en el pot on en vol afrgir un
                     min_index = (equip2['POT']-1)*9
-                    max_index = equip['POT']*9
-                    num_equips2_pot = sum(partits[ind, min_index:max_index])
-                    num_equips_pot = sum(partits[min_index:max_index, random_team_num])
+                    max_index = equip2['POT']*9
+                    num_equips_pot = sum(partits[ind, min_index:max_index])
+                    # Contem el número de rivals ja seleccionats de l'equip2 en el pot on en vol afrgir un
+                    min_index_eq2 = (equip['POT']-1)*9
+                    max_index_eq2 = equip['POT']*9
+                    num_equips2_pot = sum(partits[min_index_eq2:max_index_eq2, random_team_num])
 
                     # Si algún dels indicadors >= 2, aquell enfrontament no s'afegirà (ja que ja tindrà 2 rivals d'aquell pot)
                     if num_equips2_pot < 2 and num_equips_pot < 2:
@@ -118,9 +121,10 @@ def validem_sorteig_fase_lliga(equips):
             countr_teams_faced[i][equips.iloc[i]['League']] = 2
         partits = sorteig_fase_lliga(equips, countr_teams_faced, partits)
         num_partits = np.count_nonzero(partits == 1)
-        if num_partits != 288:
+        if num_partits < 288:
             # Es repeteix la cerca d'una Fase Lliga compatible
             pass
+
     return partits
 
 
@@ -219,7 +223,7 @@ def definim_local_visitant(equips, partits):
                     # Si t1 ja te els 4 partits de home
                     if hc_t1 == 4:
                         # treure-li un partit de home al t2, perque t1, pugui fer ple
-                        df_matches,home_count,away_count,boolean_deleted = trobar_i_intercanviar(df_matches, team2, team1, home_count, away_count, 'HOME')
+                        df_matches,home_count,away_count,boolean_deleted = trobar_i_intercanviar(df_matches, team2, home_count, away_count, 'HOME')
                         if boolean_deleted:
                             df_matches.loc[random_partit, 'PENDENT'] = 'AWAY'
                             home_count[team2] += 1
@@ -473,7 +477,7 @@ def partit(equip_local, equip_visitant, jornada, taula, equips):
         # si és una tornada (bracket phase), el local té +1 el favorit és encara més favorit
         if jornada[2] == '2':
             puntspoder_equip_local += 1
-        # si és la final, es desfà l'aventatge de local i viistant donat al començament de tot
+        # si és la final, es desfà l'avantatge de local i visitant donat al començament de tot
         elif jornada == 'FF0':
             puntspoder_equip_local -= 2
             puntspoder_equip_visitant += 1
@@ -490,6 +494,12 @@ def partit(equip_local, equip_visitant, jornada, taula, equips):
             puntspoder_equip_local -= 1
         elif equip_visitant == 'Real Madrid':
             puntspoder_equip_visitant -= 1
+
+    # El Bodo/Glimt és bastant fort com a local (més de lo habitual), pero no tant fora de casa
+    if equip_local == 'Glimt':
+        puntspoder_equip_local += 1
+    elif equip_visitant == 'Glimt':
+        puntspoder_equip_visitant -= 1
 
     # -- Definició de la fórmula --
     # Amb aquestes línies afegim la probabilitat de que la victòria sigui per un equip o per l'altre
@@ -774,12 +784,13 @@ def html_results_fase_lliga(resultats_jornada, jornada, clica_aqui):
     return
 
 
-def html_table_fase_lliga(league_table_, league_table_anterior, jornada):
+def html_table_fase_lliga(league_table_, league_table_anterior, jornada, clica_aqui):
     '''
     Genera l'HTML amb la classificació després de cada jornada
     :param league_table_: Classificació actual
     :param league_table_anterior: Classificació en la jornada anterior
     :param jornada: Número de jornada
+    :param clica_aqui: Missatge que es mostrarà en el "clica aquí" (següent jornada o veure playoffs)
     '''
     global html_complet, html_table, evento
 
@@ -885,7 +896,7 @@ def html_table_fase_lliga(league_table_, league_table_anterior, jornada):
     </head>
     <body>
         <form method="POST">
-            <button class="boton" type="submit">Clica aquí per a la següent jornada</button>
+            <button class="boton" type="submit">{clica_aqui}</button>
         </form>
     
         <table class="classificacio">
@@ -979,7 +990,7 @@ def fase_lliga(partits_per_jornada, equips, arribat, pas_a_pas, iters):
                 # Per a les jornades 1 fins la 7
                 if (i // 18) <= 6:
                     # Cridem a html_table_fase_lliga() perque mostri la classificació
-                    html_table_fase_lliga(league_table_, league_table_anterior, (i // 18)+1)
+                    html_table_fase_lliga(league_table_, league_table_anterior, (i // 18)+1, "Clica aquí per a la següent jornada")
                     # Fem una còpia de l'estat de la classificació en aquesta jornada
                     league_table_anterior = league_table_.copy(deep=True)
             resultats_jornada = []
@@ -1021,7 +1032,7 @@ def fase_lliga(partits_per_jornada, equips, arribat, pas_a_pas, iters):
     league_table_['Posició'] = range(1, len(league_table_) + 1)
     # Cridem a html_table_fase_lliga() perque ens mostri els resultats finals de la Fase Lliga
     if iters == True:
-        html_table_fase_lliga(league_table_.reset_index(), league_table_anterior, 8)
+        html_table_fase_lliga(league_table_.reset_index(), league_table_anterior, 8, "Clica aquí per veure els playoffs")
     return league_table_
 
 

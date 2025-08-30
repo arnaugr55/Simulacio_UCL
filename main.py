@@ -6,6 +6,11 @@ import pandas as pd
 import os
 
 
+tot_proces = False
+pas_a_pas = False
+fase_lliga_actual = False
+conv_respostes = {'S': True, 'N': False}
+
 try:
     iters = int(input("Quantes iteracions vols fer de la Champions?\n--> Si esculls 1 podràs "
                       "veure com va la Champions ronda a ronda. \n--> Si esculls un número major, no, "
@@ -17,21 +22,23 @@ except Exception as e:
 
 if iters == 1:
     try:
-        conv_respostes = {'S': True, 'N': False}
-
         pas_a_pas_ = input("S --> Mostra de forma visual de la Fase Lliga a la Final\n"
                            "N --> Mostra de forma visual de la Taula Final de la Fase Lliga a la Final\n")
         pas_a_pas = conv_respostes[pas_a_pas_]
-        tot_proces_ = input("La definció d'una fase lliga compatible tarda bastant.\n"
-                            "S --> Genera de zero una frase lliga\n"
-                           "N --> N'agafa aleatòriament una de les ja generades\n")
+        tot_proces_ = input("La generació d'una fase lliga compatible tarda bastant.\n"
+                            "S --> Genera de zero una fase lliga\n"
+                           "N --> N'agafa aleatòriament una de les ja generades (incloent la d'aquesta edició)\n")
         tot_proces = conv_respostes[tot_proces_]
     except Exception as e:
         raise ValueError(f"Has d'introduir el valor S o N. En majúscules")
 
+if not tot_proces:
+    fase_lliga_actual_ = input("S --> Utilitza la fase lliga de la temporada actual\n"
+                       "N --> Utilitza fases lliga ja generades\n")
+    fase_lliga_actual = conv_respostes[fase_lliga_actual_]
 
 # Inicialitzem resultats. On posem els resultats de cada equip en cada iteració
-resultats = pd.read_csv('equips/UCLTeams_202526.csv')
+resultats = pd.read_csv('equips/UCLTeams_20252026.csv')
 resultats = resultats.drop(columns=["Points", "POT"])
 resultats["Winner"] = 0
 resultats["Final"] = 0
@@ -46,41 +53,46 @@ def champions(tot_proces, equips):
     if tot_proces:
         random_code = ''.join(random.choices(string.ascii_letters + string.digits, k=10))  # Generem un codi random de 10 caracters
 
+        
         # Definim els 144 partits de la fase lliga en una matriu
-        partits = sorteig_fase_lliga(equips)
-        print(partits)
-        partits_matriu_nom = "equips/fase_lliga/202526/enfrontaments_matriu_" + random_code + ".csv"
+        partits = validem_sorteig_fase_lliga(equips)
+        partits_matriu_nom = "equips/fase_lliga/20252026/enfrontaments_matriu_" + random_code + ".csv"
         np.savetxt(partits_matriu_nom, partits, delimiter=",", fmt="%d")  # Saves as CSV
-        #partits = np.loadtxt("equips/fase_lliga/202526/enfrontaments_matriu_XMEODcsxA5.csv", delimiter=",")
+        #partits = np.loadtxt("equips/fase_lliga/20252026/enfrontaments_matriu_XMEODcsxA5.csv", delimiter=",")
 
         # Decidim els partits de local o visitant
         # En aquest cas cridem la funció en un while, ja que hi ha cops que es queda "encallada" i l'hem de tonar a cridar
         partitsLV = "None"
         while isinstance(partitsLV, str):
             partitsLV = definim_local_visitant(equips, partits)
-        partitsLV_nom = "equips/fase_lliga/202526/enfrontamentsLV_" + random_code + ".csv"
+        partitsLV_nom = "equips/fase_lliga/20252026/enfrontamentsLV_" + random_code + ".csv"
         partitsLV.to_csv(partitsLV_nom, index=False)
 
         # Assignem jornades als diferents partits
         jornades = "None"
         while isinstance(jornades, str):
             jornades = assignar_jornades(partitsLV, equips)
-        jornades_nom = "equips/fase_lliga/202526/jornades_" + random_code + ".csv"
+        jornades_nom = "equips/fase_lliga/20252026/jornades_" + random_code + ".csv"
         jornades.to_csv(jornades_nom, index=False)
 
     else:
-        # Aleatòriament, seleccionem una fase lliga de les ja generades
-        #carpeta = r"C:\Users\usuari\Documents\SimulacióFut\equips\fase_lliga\202526"
-        carpeta = r"equips\fase_lliga\202526"
-        fitxers = [f for f in os.listdir(carpeta) if
-                   f.startswith("jornades_") and os.path.isfile(os.path.join(carpeta, f))]
-        # Selecciona un fitxer aleatori
-        fitxer_aleatori = random.choice(fitxers)
-        ruta_completa = os.path.join(carpeta, fitxer_aleatori)
+        if fase_lliga_actual:
+            # Seleccionem la fase de grups actual
+            ruta_completa = "equips/fase_lliga/20252026/jornades_XXXXXXXXXX.csv"
+        else:
+            # Aleatòriament, seleccionem una fase lliga de les ja generades
+            #carpeta = r"C:\Users\usuari\Documents\SimulacióFut\equips\fase_lliga\20252026"
+            carpeta = r"equips\fase_lliga\20252026"
+            fitxers = [f for f in os.listdir(carpeta) if
+                       f.startswith("jornades_") and os.path.isfile(os.path.join(carpeta, f))]
+            # Selecciona un fitxer aleatori
+            fitxer_aleatori = random.choice(fitxers)
+            ruta_completa = os.path.join(carpeta, fitxer_aleatori)
+
         jornades = pd.read_csv(ruta_completa)
         print(jornades)
 
-        # Si hem deciidit "pas_a_pas", mostrarem primer els endrentaments de cada equip a la fase lliga
+        # Si hem decidit "pas_a_pas", mostrarem primer els enfrontaments de cada equip a la fase lliga
         if pas_a_pas == True:
             fase_lliga_imatge(jornades[['Equip 1', 'Equip 2']], equips)
 
@@ -115,7 +127,7 @@ def champions(tot_proces, equips):
 if __name__ == '__main__':
     # VARIABLES A PARAMETRITZAR PER L'USUARI
     # Carreguem els equips que hi participen
-    equips = pd.read_csv('equips/UCLTeams_202526.csv')
+    equips = pd.read_csv('equips/UCLTeams_20252026.csv')
     for i in range(iters):
         champions(tot_proces, equips)
 
