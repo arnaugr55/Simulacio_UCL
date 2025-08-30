@@ -1,0 +1,145 @@
+Equip 1,Equip 2,Jornada
+PSG,Bayern,4
+PSG,Atalanta,1
+PSG,Tottenham,5
+PSG,Newcastle,8
+Real Madrid,Manchester City,6
+Real Madrid,Juventus,3
+Real Madrid,Marseille,1
+Real Madrid,Monaco,7
+Manchester City,BVB,4
+Manchester City,Leverkusen,5
+Manchester City,Napoli,1
+Manchester City,Galatasaray,8
+Bayern,Chelsea,1
+Bayern,Club Brugge,3
+Bayern,Sporting CP,6
+Bayern,Union Saint-Gilloise,7
+Liverpool,Real Madrid,4
+Liverpool,Atlético,1
+Liverpool,PSV,5
+Liverpool,Qarabag,8
+Inter,Liverpool,6
+Inter,Arsenal,7
+Inter,Slavia Prague,2
+Inter,Kairat Almaty,4
+Chelsea,Barça,5
+Chelsea,Benfica,2
+Chelsea,Ajax,3
+Chelsea,Pafos,7
+BVB,Inter,8
+BVB,Villarreal,5
+BVB,Glimt,6
+BVB,Athletic,2
+Barça,PSG,2
+Barça,Eintracht,6
+Barça,Olympiacos,3
+Barça,Copenhagen,8
+Arsenal,Bayern,5
+Arsenal,Atlético,3
+Arsenal,Olympiacos,2
+Arsenal,Kairat Almaty,8
+Leverkusen,PSG,3
+Leverkusen,Villarreal,8
+Leverkusen,PSV,2
+Leverkusen,Newcastle,6
+Atlético,Inter,5
+Atlético,Eintracht,2
+Atlético,Glimt,8
+Atlético,Union Saint-Gilloise,4
+Benfica,Real Madrid,8
+Benfica,Leverkusen,4
+Benfica,Napoli,6
+Benfica,Qarabag,1
+Atalanta,Chelsea,6
+Atalanta,Club Brugge,2
+Atalanta,Slavia Prague,3
+Atalanta,Athletic,7
+Villarreal,Manchester City,3
+Villarreal,Juventus,2
+Villarreal,Ajax,7
+Villarreal,Copenhagen,6
+Juventus,BVB,1
+Juventus,Benfica,7
+Juventus,Sporting CP,4
+Juventus,Pafos,6
+Eintracht,Liverpool,3
+Eintracht,Atalanta,5
+Eintracht,Tottenham,8
+Eintracht,Galatasaray,1
+Club Brugge,Barça,4
+Club Brugge,Arsenal,6
+Club Brugge,Marseille,8
+Club Brugge,Monaco,1
+Tottenham,BVB,7
+Tottenham,Villarreal,1
+Tottenham,Slavia Prague,6
+Tottenham,Copenhagen,4
+PSV,Bayern,8
+PSV,Atlético,6
+PSV,Napoli,3
+PSV,Union Saint-Gilloise,1
+Ajax,Inter,1
+Ajax,Benfica,5
+Ajax,Olympiacos,8
+Ajax,Galatasaray,4
+Napoli,Chelsea,8
+Napoli,Eintracht,4
+Napoli,Sporting CP,2
+Napoli,Qarabag,5
+Sporting CP,PSG,7
+Sporting CP,Club Brugge,5
+Sporting CP,Marseille,3
+Sporting CP,Kairat Almaty,1
+Olympiacos,Real Madrid,5
+Olympiacos,Leverkusen,7
+Olympiacos,PSV,4
+Olympiacos,Pafos,1
+Slavia Prague,Barça,7
+Slavia Prague,Arsenal,4
+Slavia Prague,Glimt,1
+Slavia Prague,Athletic,5
+Glimt,Manchester City,7
+Glimt,Juventus,5
+Glimt,Tottenham,2
+Glimt,Monaco,4
+Marseille,Liverpool,7
+Marseille,Atalanta,4
+Marseille,Ajax,2
+Marseille,Newcastle,5
+Copenhagen,BVB,3
+Copenhagen,Leverkusen,1
+Copenhagen,Napoli,7
+Copenhagen,Kairat Almaty,5
+Monaco,Manchester City,2
+Monaco,Juventus,8
+Monaco,Tottenham,3
+Monaco,Galatasaray,6
+Galatasaray,Liverpool,2
+Galatasaray,Atlético,7
+Galatasaray,Glimt,3
+Galatasaray,Union Saint-Gilloise,5
+Union Saint-Gilloise,Inter,3
+Union Saint-Gilloise,Atalanta,8
+Union Saint-Gilloise,Marseille,6
+Union Saint-Gilloise,Newcastle,2
+Qarabag,Chelsea,4
+Qarabag,Eintracht,7
+Qarabag,Ajax,6
+Qarabag,Copenhagen,2
+Athletic,PSG,6
+Athletic,Arsenal,1
+Athletic,Sporting CP,8
+Athletic,Qarabag,3
+Newcastle,Barça,1
+Newcastle,Benfica,3
+Newcastle,PSV,7
+Newcastle,Athletic,4
+Pafos,Bayern,2
+Pafos,Villarreal,4
+Pafos,Slavia Prague,8
+Pafos,Monaco,5
+Kairat Almaty,Real Madrid,2
+Kairat Almaty,Club Brugge,7
+Kairat Almaty,Olympiacos,6
+Kairat Almaty,Pafos,3
